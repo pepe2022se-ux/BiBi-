@@ -1,4 +1,4 @@
-BiBi Web/PWA 0.4
+BiBi Web/PWA 0.5
 Расширенная интерактивная demo/PWA-версия.
 
 Добавлено:
@@ -12,3 +12,6 @@ BiBi Web/PWA 0.4
 - обновлённый service worker.
 
 Важно: цены, партнёры и платёжные действия в этой версии являются демонстрационными.
+
+
+0.5: premium visual refresh, realistic vehicle image, unified vector icons.
