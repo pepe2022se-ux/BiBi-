@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#f5f6f2">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="BiBi">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>BiBi</title>
+<style>
+:root{--g:#8def18;--ink:#151515;--bg:#f4f5f1;--muted:#71736e}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;color:var(--ink)}
+body{min-height:100vh}.app{max-width:520px;margin:auto;min-height:100vh;padding-bottom:94px}
+.top{padding:calc(env(safe-area-inset-top) + 16px) 18px 10px;display:flex;justify-content:space-between;align-items:center}
+.logo{display:flex;align-items:center;gap:9px;font-weight:900;font-size:29px;letter-spacing:-1.5px}.mark{width:42px;height:42px;border-radius:14px;background:#151515;color:var(--g);display:grid;place-items:center}
+.pill{border:0;background:#e7e9e3;border-radius:99px;padding:9px 12px;font-weight:800}
+main{padding:4px 16px 20px}.screen{display:none}.screen.active{display:block}
+.card{background:#fff;border-radius:25px;padding:17px;margin-bottom:12px;box-shadow:0 1px 0 rgba(0,0,0,.02)}
+h1{font-size:31px;line-height:1;margin:9px 0 8px;letter-spacing:-1.4px}h2{font-size:22px;margin:22px 2px 11px;letter-spacing:-.7px}
+.muted{color:var(--muted);font-size:14px;line-height:1.35}
+.car{height:136px;margin:12px 0 14px;position:relative;display:grid;place-items:center}
+.carbody{width:286px;height:91px;border-radius:75px 75px 32px 32px;background:linear-gradient(145deg,#555b60,#171819);position:relative;box-shadow:0 20px 28px #0002}
+.glass{position:absolute;width:145px;height:37px;border-radius:30px;background:#24292c;top:9px;left:70px}
+.wheel{position:absolute;width:46px;height:46px;border:7px solid #555;background:#111;border-radius:50%;bottom:-16px}.wl{left:28px}.wr{right:28px}
+.care{background:#151515;color:#fff;border-radius:20px;padding:15px}.care b{color:var(--g)}
+.row{display:flex;gap:10px}.row>*{flex:1}.stat b{display:block;font-size:20px;margin-top:5px}.stat .go{margin-top:8px;font-weight:800}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.tile{background:#fff;border:0;border-radius:22px;padding:13px 7px;min-height:108px;font-weight:800;font-size:12px}.ico{width:43px;height:43px;background:#8def1833;border-radius:14px;margin:0 auto 9px;display:grid;place-items:center;font-size:21px}
+button,.click{cursor:pointer}.wide{width:100%;border:0;border-radius:17px;padding:15px;background:#151515;color:#fff;font-size:15px;font-weight:850}.green{background:var(--g);color:#151515}
+.list{display:flex;align-items:center;gap:12px}.list+.list{margin-top:10px}.li{width:45px;height:45px;background:#8def1830;border-radius:14px;display:grid;place-items:center}.grow{flex:1}.price{font-weight:900}
+.back{border:0;background:#fff;width:42px;height:42px;border-radius:14px;font-size:20px}.head{display:flex;gap:12px;align-items:center;margin:6px 0 18px}.head h1{margin:0}
+.bottom{position:fixed;z-index:10;bottom:0;left:50%;transform:translateX(-50%);width:min(520px,100%);padding:8px 10px calc(env(safe-area-inset-bottom) + 8px);background:#f7f8f5ee;backdrop-filter:blur(18px);display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #ddd}
+.nav{border:0;background:none;padding:7px 2px;font-size:10px;font-weight:700}.nav span{display:block;font-size:21px;margin-bottom:2px}.nav.on{color:#4d7f00}
+.robot{width:67px;height:62px;border-radius:25px;background:white;border:2px solid #ddd;position:relative}.face{position:absolute;left:10px;right:10px;top:15px;height:24px;border-radius:20px;background:#171717;display:flex;align-items:center;justify-content:space-evenly}.eye{width:8px;height:8px;background:var(--g);border-radius:50%}
+.badge{display:inline-block;background:#8def1835;border-radius:99px;padding:7px 10px;font-weight:850;font-size:12px}.verified{font-size:46px;font-weight:950;letter-spacing:-3px}.progress{height:8px;border-radius:9px;background:#e5e6e2;overflow:hidden}.progress i{display:block;height:100%;width:94%;background:var(--g)}
+input{width:100%;padding:15px;border:0;border-radius:16px;background:#fff;font-size:16px;margin:5px 0 10px;outline:none}
+.toast{position:fixed;left:50%;bottom:105px;transform:translateX(-50%);background:#151515;color:white;border-radius:15px;padding:12px 17px;font-weight:700;opacity:0;pointer-events:none;transition:.2s;z-index:30}.toast.show{opacity:1}
+</style>
+</head>
+<body><div class="app">
+<header class="top"><div class="logo"><div class="mark">B</div>BiBi</div><button class="pill" onclick="toggleMode()" id="mode">FREE</button></header>
+<main>
+<section id="home" class="screen active">
+<div class="card">
+<div style="display:flex;justify-content:space-between;align-items:start"><div><b style="font-size:21px">BMW X3 · 2023</b><div class="muted">A777AA · 77 • 42 800 км</div></div><div class="robot"><div class="face"><i class="eye"></i><i class="eye"></i></div></div></div>
+<div class="car"><div class="carbody"><i class="glass"></i><i class="wheel wl"></i><i class="wheel wr"></i></div></div>
+<div class="care" id="carebox"><div style="display:flex;justify-content:space-between;align-items:center"><div><b>BiBi CARE</b><div style="font-size:13px;color:#bbb">Помощь 24/7 и привилегии</div></div><button class="pill green" onclick="activateCare()">6 990 ₽</button></div></div>
+</div>
+<div class="row"><div class="card stat click" onclick="openS('fines')">🧾<div>Штрафы</div><b>2 · 3 500 ₽</b><div class="go">Оплатить →</div></div><div class="card stat click" onclick="openS('osago')">🛡️<div>ОСАГО</div><b>47 дней</b><div class="go">Продлить →</div></div></div>
+<h2>Возможности BiBi</h2>
+<div class="grid">
+<button class="tile" onclick="openS('help')"><div class="ico">🆘</div>Помощь</button>
+<button class="tile" onclick="openS('service')"><div class="ico">🔧</div>СТО</button>
+<button class="tile" onclick="openS('warranty')"><div class="ico">🛡</div>Гарантия</button>
+<button class="tile" onclick="openS('check')"><div class="ico">✓</div>Проверка авто</button>
+<button class="tile" onclick="openS('verified')"><div class="ico">◉</div>BiBi VERIFIED</button>
+<button class="tile" onclick="openS('ai')"><div class="ico">🤖</div>AI помощник</button>
+</div>
+<div class="card click" style="margin-top:13px" onclick="openS('market')"><div class="list"><div class="li">🚘</div><div class="grow"><b>Купить / продать авто</b><div class="muted">Проверка и история в одной сделке</div></div><b>›</b></div></div>
+</section>
+
+<section id="garage" class="screen"><h1>Мой гараж</h1><p class="muted">Vehicle ID связывает всю историю автомобиля.</p><div class="card"><div class="car"><div class="carbody"><i class="glass"></i><i class="wheel wl"></i><i class="wheel wr"></i></div></div><b style="font-size:20px">BMW X3 · 2023</b><p class="muted">VIN WBA••••••••1234 · 42 800 км</p><button class="wide" onclick="openS('verified')">История автомобиля</button></div><button class="wide green" onclick="openS('addcar')">+ Добавить автомобиль</button></section>
+<section id="profile" class="screen"><h1>Профиль</h1><div class="card"><b>Демо-клиент</b><p class="muted" id="profileMode">Тариф: BiBi FREE</p></div><div class="card"><b>BiBi ID</b><p class="muted">Телефон, автомобили, документы и сервисы в одном аккаунте.</p></div><button class="wide" onclick="toast('Демо: профиль сохранён')">Настройки</button></section>
+
+<section id="fines" class="screen detail"><div class="head"><button class="back" onclick="back()">‹</button><h1>Штрафы</h1></div><p class="muted">Найдено 2 неоплаченных штрафа.</p><div class="card list"><div class="li">📷</div><div class="grow"><b>Превышение скорости</b><div class="muted">12.09.2026</div></div><div class="price">2 000 ₽</div></div><div class="card list"><div class="li">🅿️</div><div class="grow"><b>Парковка</b><div class="muted">18.09.2026</div></div><div class="price">1 500 ₽</div></div><button class="wide" onclick="toast('Оплата подготовлена к подключению эквайринга')">Оплатить 3 500 ₽</button></section>
+<section id="osago" class="screen detail"><div class="head"><button class="back" onclick="back()">‹</button><h1>ОСАГО</h1></div><span class="badge">Осталось 47 дней</span><h2>Предложения</h2><div class="card list"><div class="grow"><b>Страховая A</b><div class="muted">Электронный полис · 12 мес.</div></div><div class="price">8 740 ₽</div></div><div class="card list"><div class="grow"><b>Страховая B</b><div class="muted">Электронный полис · 12 мес.</div></div><div class="price">9 120 ₽</div></div><button class="wide" onclick="toast('Демо: выбран расчёт ОСАГО')">Выбрать предложение</button></section>
+<section id="help" class="screen detail"><div class="head"><button class="back" onclick="back()">‹</button><h1>Помощь</h1></div><p class="muted">Выберите ситуацию.</p><div id="helpitems"></div></section>
+<section id="service" class="screen detail"><div class="head"><button class="back" onclick="back()">‹</button><h1>Подбор СТО</h1></div><div class="card list"><div class="li">🔧</div><div class="grow"><b>BMW Expert Center</b><div class="muted">4.9 · 3.2 км · BMW</div></div><b>3 500 ₽</b></div><div class="card list"><div class="li">🔧</div><div class="grow"><b>Bavaria Service</b><div class="muted">4.8 · 5.6 км · BMW / MINI</div></div><b>3 000 ₽</b></div><button class="wide" onclick="toast('Демо: запись создана')">Записаться</button></section>
+<section id="warranty" class="screen detail"><div class="head"><button class="back" onclick="back()">‹</button><h1>Гарантия</h1></div><div class="card"><b>Base</b><p class="muted">Ключевые узлы и агрегаты</p><b>29 990 ₽</b></div><div class="card"><b>Plus</b><p class="muted">Расширенный перечень компонентов</p><b>49 990 ₽</b></div><button class="wide">Рассчитать</button></section>
+<section id="check" class="screen detail"><div class="head"><button class="back" onclick="back()">‹</button><h1>Проверка авто</h1></div><div class="card"><b>История по VIN</b><p class="muted">Регистрации, пробег, внешние источники</p><b>1 990 ₽</b></div><div class="card"><b>Выездная диагностика</b><p class="muted">Техника + кузов + фотоотчёт</p><b>7 990 ₽</b></div><div class="card"><b>Комплекс BiBi VERIFIED</b><p class="muted">Полная проверка и цифровой отчёт</p><b>9 990 ₽</b></div><button class="wide" onclick="toast('Демо: проверка заказана')">Заказать</button></section>
+<section id="verified" class="screen detail"><div class="head"><button class="back" onclick="back()">‹</button><h1>BiBi VERIFIED</h1></div><div class="card"><div class="verified">94%</div><b>истории подтверждено</b><div class="progress" style="margin-top:14px"><i></i></div></div><div class="card"><b>04.09.2026 · 40 120 км</b><p class="muted">Плановое ТО · масло и фильтры · подтверждено BiBi</p></div><div class="card"><b>21.06.2026 · 36 800 км</b><p class="muted">Передние тормозные диски и колодки</p></div><div class="card"><b>02.02.2026 · 31 400 км</b><p class="muted">Кузовная диагностика · фотоотчёт сохранён</p></div></section>
+<section id="ai" class="screen detail"><div class="head"><button class="back" onclick="back()">‹</button><h1>BiBi AI</h1></div><div class="card"><b>Что случилось с автомобилем?</b><p class="muted">Опишите симптом простыми словами.</p><input id="aiq" placeholder="Например: машина не заводится"><button class="wide green" onclick="aiAnswer()">Разобраться</button></div><div id="aires"></div></section>
+<section id="market" class="screen detail"><div class="head"><button class="back" onclick="back()">‹</button><h1>BiBi Market</h1></div><div class="card click" onclick="toast('Каталог автомобилей — следующий API-модуль')"><b>Купить автомобиль</b><p class="muted">Проверенные автомобили с историей</p></div><div class="card click" onclick="toast('Оценка автомобиля: 4,1–4,4 млн ₽ · демо')"><b>Продать автомобиль</b><p class="muted">Оценка → диагностика → объявление</p></div><div class="card click" onclick="openS('check')"><b>Проверить перед покупкой</b><p class="muted">VIN → диагностика → VERIFIED</p></div></section>
+<section id="addcar" class="screen detail"><div class="head"><button class="back" onclick="back()">‹</button><h1>Добавить авто</h1></div><p class="muted">VIN станет основой Vehicle ID.</p><input id="vin" placeholder="VIN"><input id="plate" placeholder="Госномер"><button class="wide" onclick="addCar()">Создать Vehicle ID</button></section>
+</main>
+<nav class="bottom"><button class="nav on" onclick="tab('home',this)"><span>⌂</span>Главная</button><button class="nav" onclick="tab('market',this)"><span>🚘</span>Маркет</button><button class="nav" onclick="tab('garage',this)"><span>▣</span>Гараж</button><button class="nav" onclick="tab('profile',this)"><span>◯</span>Профиль</button></nav>
+<div class="toast" id="toast"></div></div>
+<script>
+let mode=localStorage.getItem('bibiMode')||'FREE', historyStack=['home'];
+function qs(x){return document.querySelector(x)}
+function renderMode(){qs('#mode').textContent=mode;qs('#profileMode').textContent='Тариф: BiBi '+mode;qs('#carebox').innerHTML=mode==='CARE'?'<b>BiBi CARE · АКТИВЕН</b><span style="float:right;font-weight:900">223 дня</span><div style="margin-top:8px;color:#bbb;font-size:13px">Помощь 24/7 · действует до 02.05.2027</div>':'<div style="display:flex;justify-content:space-between;align-items:center"><div><b>BiBi CARE</b><div style="font-size:13px;color:#bbb">Помощь 24/7 и привилегии</div></div><button class="pill green" onclick="activateCare()">6 990 ₽</button></div>';renderHelp()}
+function toggleMode(){mode=mode==='FREE'?'CARE':'FREE';localStorage.setItem('bibiMode',mode);renderMode()}
+function activateCare(){mode='CARE';localStorage.setItem('bibiMode',mode);renderMode();toast('BiBi CARE активирован в демо')}
+function openS(id){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));qs('#'+id).classList.add('active');historyStack.push(id);window.scrollTo(0,0)}
+function back(){historyStack.pop();openS(historyStack.pop()||'home')}
+function tab(id,b){openS(id);document.querySelectorAll('.nav').forEach(x=>x.classList.remove('on'));b.classList.add('on')}
+function toast(t){let x=qs('#toast');x.textContent=t;x.classList.add('show');setTimeout(()=>x.classList.remove('show'),2300)}
+function renderHelp(){let arr=['Эвакуатор','Запуск аккумулятора','Колесо / шиномонтаж','Подвоз топлива'];qs('#helpitems').innerHTML=arr.map((x,i)=>`<div class="card list click" onclick="toast('${mode==='CARE'?'Заявка CARE создана':'Выбран исполнитель'}')"><div class="li">${['🚚','🔋','🛞','⛽'][i]}</div><div class="grow"><b>${x}</b><div class="muted">${mode==='CARE'?'Организует BiBi CARE':'от '+[4500,2000,2500,1800][i]+' ₽'}</div></div><b>›</b></div>`).join('')}
+function aiAnswer(){let q=qs('#aiq').value||'проблема с автомобилем';qs('#aires').innerHTML=`<div class="card"><b>Предварительный маршрут</b><p class="muted">По запросу «${q}» безопаснее начать с диагностики. BiBi может подобрать профильное СТО или дорожную помощь.</p><button class="wide" onclick="openS('service')">Подобрать сервис</button></div>`}
+function addCar(){let v=qs('#vin').value.trim();if(!v){toast('Введите VIN');return}localStorage.setItem('bibiSecondCar',v);toast('Vehicle ID создан');setTimeout(()=>openS('garage'),900)}
+if('serviceWorker' in navigator) navigator.serviceWorker.register('./sw.js').catch(()=>{});
+renderMode();
+</script></body></html>
